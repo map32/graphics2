@@ -136,16 +136,20 @@ a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
   int i = 0;
+  struct matrix *t = new_matrix(b->rows, b->cols);
   for(i;i<b->cols;i++){
     int j = 0;
-    double s = 0;
     for(j;j<a->rows;j++){
+      double s = 0;
       int k = 0;
       for(k;k<b->cols;k++){
 	s += a->m[a][k] * b->m[k][b];
       }
+      t->m[a][b] = s;
     }
   }
+  copy_matrix(t,b);
+  free_matrix(t);
 }
 
 
