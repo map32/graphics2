@@ -144,9 +144,9 @@ void matrix_mult(struct matrix *a, struct matrix *b) {
       double s = 0;
       int k = 0;
       for(k;k<b->cols;k++){
-	s += a->m[a][k] * b->m[k][b];
+	s += a->m[j][k] * b->m[k][i];
       }
-      n->m[a][b] = s;
+      n->m[j][i] = s;
     }
   }
   copy_matrix(n,b);
@@ -212,10 +212,10 @@ angle of rotation and X as the axis of rotation.
 struct matrix * make_rotX(double theta) {
   struct matrix *n = new_matrix(4,4);
   ident(n);
-  n->[1][1] = cos(theta);
-  n->[1][2] = -sin(theta);
-  n->[2][1] = sin(theta);
-  n->[2][2] = cos(theta);
+  n->m[1][1] = cos(theta);
+  n->m[1][2] = -sin(theta);
+  n->m[2][1] = sin(theta);
+  n->m[2][2] = cos(theta);
   return n;
 }
 
@@ -228,10 +228,10 @@ angle of rotation and Y as the axis of rotation.
 struct matrix * make_rotY(double theta) {
   struct matrix *n = new_matrix(4,4);
   ident(n);
-  n->[0][0] = cos(theta);
-  n->[0][2] = -sin(theta);
-  n->[2][0] = sin(theta);
-  n->[2][2] = cos(theta);
+  n->m[0][0] = cos(theta);
+  n->m[0][2] = -sin(theta);
+  n->m[2][0] = sin(theta);
+  n->m[2][2] = cos(theta);
   return n;
 }
 
@@ -244,9 +244,9 @@ angle of rotation and Z as the axis of rotation.
 struct matrix * make_rotZ(double theta) {
   struct matrix *n = new_matrix(4,4);
   ident(n);
-  n->[0][0] = cos(theta);
-  n->[0][1] = -sin(theta);
-  n->[1][0] = sin(theta);
-  n->[1][1] = cos(theta);
+  n->m[0][0] = cos(theta);
+  n->m[0][1] = -sin(theta);
+  n->m[1][0] = sin(theta);
+  n->m[1][1] = cos(theta);
   return n;
 }

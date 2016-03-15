@@ -22,6 +22,8 @@ void add_point( struct matrix * points, int x, int y, int z) {
   points->m[0][points->lastcol+1] = x;
   points->m[1][points->lastcol+1] = y;
   points->m[2][points->lastcol+1] = z;
+  points->m[3][points->lastcol+1] = 1;
+  points->lastcol += 1;
 }
 
 /*======== void add_edge() ==========
@@ -34,8 +36,8 @@ should use add_point
 void add_edge( struct matrix * points, 
 	       int x0, int y0, int z0, 
 	       int x1, int y1, int z1) {
-  add_point(x0,y0,z0);
-  add_point(x1,y1,z1);
+  add_point(points,x0,y0,z0);
+  add_point(points,x1,y1,z1);
 }
 
 /*======== void draw_lines() ==========
